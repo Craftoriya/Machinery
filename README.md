@@ -5,6 +5,6 @@
 
 <h1 align="center">Machinery</h1>
 <div align="center">
-    <img src="https://github.com/Craftoriya/Machinery/actions/workflows/build.yml/badge.svg?branch=master">
+    <a href="https://github.com/Craftoriya/Machinery/actions/workflows/build.yml"><img src="https://github.com/Craftoriya/Machinery/actions/workflows/build.yml/badge.svg?branch=master"></a>
 </div>
 <h3 align="center">Plugin for simplified and accelerated development in scripting languages.</h3>
