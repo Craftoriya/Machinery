@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-    <img src="https://github.com/Craftoriya/Machinery/actions/workflows/build/badge.svg">
+    <img src="https://github.com/Craftoriya/Machinery/actions/workflows/build.yml/badge.svg">
 </div>
 
 <h1 align="center">Machinery</h1>
