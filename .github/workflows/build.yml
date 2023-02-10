@@ -11,6 +11,11 @@ on:
   push:
     branches: [ "master" ]
 
+permissions:
+  id-token: "write"
+  contents: "write"
+  packages: "write"
+
 jobs:
   build:
 
