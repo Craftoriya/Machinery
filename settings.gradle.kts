@@ -6,4 +6,4 @@ pluginManagement {
 }
 
 rootProject.name = "Machinery"
-
+include("test-plugin")
