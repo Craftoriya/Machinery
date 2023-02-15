@@ -1,14 +1,14 @@
-import io.papermc.paperweight.util.download
-import xyz.jpenilla.runpaper.RunPaperPlugin
-import xyz.jpenilla.runpaper.task.RunServer
+import io.papermc.paperweight.tasks.RemapJar
+import io.papermc.paperweight.util.convertToPath
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import xyz.jpenilla.runpaper.task.RunServer
 
 plugins {
     kotlin("jvm") version "1.8.10"
     id("io.papermc.paperweight.userdev") version "1.4.0"
     id("xyz.jpenilla.run-paper") version "2.0.1" // Adds runServer and runMojangMappedServer tasks for testing
     id("net.minecrell.plugin-yml.bukkit") version "0.5.2" // Generates plugin.yml
-    id ("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 
@@ -35,12 +35,18 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok:1.18.26")
 
     implementation(kotlin("reflect"))
-    implementation(kotlin("script-runtime"))
-    implementation(kotlin("compiler-embeddable"))
-    implementation(kotlin("script-util"))
-    implementation(kotlin("scripting-compiler-embeddable"))
+    implementation(kotlin("scripting-common"))
+    implementation(kotlin("scripting-jvm"))
+    implementation(kotlin("scripting-dependencies"))
+    implementation(kotlin("scripting-dependencies-maven"))
 
-    shadow(kotlin("stdlib"))
+    implementation(kotlin("scripting-jvm-host-unshaded"))
+
+
+    compileOnly(kotlin("stdlib"))
+
+    implementation("org.jetbrains.kotlin:kotlin-scripting-jsr223:1.8.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     shadow("org.jetbrains.kotlin:kotlin-scripting-jsr223:1.8.10")
     shadow("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
@@ -60,7 +66,7 @@ tasks.withType(JavaCompile::class.java) {
 // Configure plugin.yml generation
 bukkit {
     load = net.minecrell.pluginyml.bukkit.BukkitPluginDescription.PluginLoadOrder.STARTUP
-    main = "com.craftoriya.paper.machinery.MachineryAPI"
+    main = "com.craftoriya.machinery.MachineryAPI"
     apiVersion = "1.19"
     authors = listOf("NitkaNikita")
     name = "Machinery"
